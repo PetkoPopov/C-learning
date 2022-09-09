@@ -19,72 +19,43 @@ void print(const vector<T> &v) {
 
 }
 
-vector<char> makeAlfavit() { 
+vector<char>* makeAlfavit() { 
     vector<char> alfavit;
     for (int i = 35; i < 126; i++) {
         char c = (char) i;
         alfavit.push_back(c);
        
     }
-//    vector<char> ptr_ = & alfavit ;
-    return alfavit;
+    vector<char> ptr_ = & alfavit ;
+    return ptr_;
 }
 
 int main() {
-//         vector<char>* ptr = makeAlfavit();
-//         for(unsigned i = 0; i <91 ; i++){
-//         cout<<ptr->at(i);
-//         }
-//         
-//         cout<<endl<<ptr->at(22);
-//         return 0;
-    
-//    vector<char> vec ={'d','j','k'};
-//   
-//    vector<char>* ptr=& vec;
-//    vector<char>::iterator it=vec.begin();
-//    
-//    int pi= 3;
-//    int * ptr_pi=&pi;
-////    cout<< ptr_pi<<" <--ptr_pi "<<*ptr_pi<<" <==*ptr_pi \n =================";
-//    vector<string>  bukva;
-//    bukva.push_back("nachalo");
-//    bukva.push_back("po");
-//    bukva.push_back("yui");
-//    string* ptr_bukva = & bukva[0];
-//    
-//    cout<<*ptr_bukva<<endl;
-//    ptr_bukva++;
-//    cout<<*ptr_bukva<<endl;
-//    ptr_bukva++;
-//    cout<<*ptr_bukva;
-//    
-//    
-//         return 0;
+
     cout << "insert states \n";
     string input;
     getline(cin, input);
 
-    vector<char> alfavit = makeAlfavit();
-    vector<vector<char>> alfavit_state;
+    vector<char>* alfavit = makeAlfavit();
+    vector<vector<char>*> alfavit_state;
     while (input != "#end") {
         if (input == "#reset") {
-            alfavit = alfavit_state.front();
-            alfavit_state.clear();
+//            alfavit = alfavit_state.front();
+//            alfavit_state.clear();
 
         } else if (input == "#undo") {
-            alfavit = alfavit_state.back();
-            alfavit_state.pop_back();
+//            alfavit = alfavit_state.back();
+//            alfavit_state.pop_back();
 
         } else {
             char word;
             istringstream strm(input);
             while (strm >> word) {
-                vector<char>::iterator it;
-                for (it = alfavit.begin(); it != alfavit.end(); it++) {
+                
+                for (size_t it =0 ; it != *alfavit->size(); it++) {
 
-                    if (*it == word) {
-                        alfavit.erase(it);
+                    if (alfavit->at(it) == word) {
+                        alfavit->erase(it);
                         alfavit_state.push_back(alfavit);
                         break;
                     }
